@@ -1,0 +1,1 @@
+Teste formato de arquivo inválido para o campo "Anexe seu currículo"

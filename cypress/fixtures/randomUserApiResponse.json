@@ -1,0 +1,66 @@
+{
+    "results": [
+        {
+            "gender": "female",
+            "name": {
+                "title": "Miss",
+                "first": "Karoline",
+                "last": "Grobe"
+            },
+            "location": {
+                "street": {
+                    "number": 8255,
+                    "name": "Bergstraße"
+                },
+                "city": "Strehla",
+                "state": "Rheinland-Pfalz",
+                "country": "Germany",
+                "postcode": 10047,
+                "coordinates": {
+                    "latitude": "-50.8487",
+                    "longitude": "46.7153"
+                },
+                "timezone": {
+                    "offset": "-5:00",
+                    "description": "Eastern Time (US & Canada), Bogota, Lima"
+                }
+            },
+            "email": "karoline.grobe@example.com",
+            "login": {
+                "uuid": "8413d1da-00c4-4ed7-bbc3-a0898eed93b5",
+                "username": "blueostrich134",
+                "password": "rico",
+                "salt": "dYq5YCST",
+                "md5": "402779c9bc5908df81662fed850b40aa",
+                "sha1": "de4dccacce58b4531572b8ab5e5b3d0c7f213b11",
+                "sha256": "243086f5e983fe6eb5a499af4585f308c495a666709c6232994cc15167d8770e"
+            },
+            "dob": {
+                "date": "1973-08-22T21:49:51.299Z",
+                "age": 49
+            },
+            "registered": {
+                "date": "2014-10-28T20:29:54.448Z",
+                "age": 8
+            },
+            "phone": "0998-6273673",
+            "cell": "0178-7584705",
+            "id": {
+                "name": "SVNR",
+                "value": "08 220873 G 584"
+            },
+            "picture": {
+                "large": "https://randomuser.me/api/portraits/women/51.jpg",
+                "medium": "https://randomuser.me/api/portraits/med/women/51.jpg",
+                "thumbnail": "https://randomuser.me/api/portraits/thumb/women/51.jpg"
+            },
+            "nat": "DE"
+        }
+    ],
+    "info": {
+        "seed": "19a67fa932d31b2a",
+        "results": 1,
+        "page": 1,
+        "version": "1.4"
+    }
+}

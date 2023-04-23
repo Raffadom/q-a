@@ -1,0 +1,373 @@
+*Projeto - Formulário de inscrição do Beedoo*
+
+- A user story foi criada com base em estrutura de escrita usando a sintaxe Gherkin e especificação
+por exemplos em BDD.
+- A user story e os casos de testes foram escritos baseados na interação do usuário com a interface 
+gráfica do site onde se encontra o formulário de inscrição.
+- Os casos de teste (CTS) foram escritos baseados de acordo com a interação do usuário com a interface
+gráfica do site levando em consideração a usabilidade da aplicação. Como não tive acesso aos requisitos do
+sistema e como deveria ser o padrão de comportamento para cada funcionalidade, levei em consideração os 
+padrões de comportamento de aplicações gerais com as mesmas funcionalidades. Para cada funcionalidade que
+se comportou de maneira diferente comparado à esses padrões, deixei um comentario abaixo do Cenário (CTS)
+deixando meu ponto de vista e/ou alguma sugestão de como o sistema deveria se comportar de acordo com meu
+entendimento.
+
+*Descrição do Projeto*
+
+*Projeto - Formulário de inscrição do Beedoo
+*Url do site - 'https://app.pipefy.com/public/form/NWn55kc1'
+*Ambiente - Web 
+*Browser - Google Chrome Versão 111.0.5563.147 (Versão oficial) 64 bits
+*Autor - Rafael Domingos Santos 
+*Título - Preenchimento dos dados do formulário de incrição e envio de curriculo.
+*Evidências de testes - './qa/manualTests/manualTestEvidencies'
+*Massa de dados - './qa/manualTests/testDataManagement'
+*Documentação - './qa/manualTests/UserStoryBeedoo.txt'
+
+Pré-condições:
+
+- O usuário precisa acessar o site do 'Beedoo' 'https://beedoo.com.br/', rolar a página até o rodapé e
+clicar em 'Envie seu currículo' dentro de "Faça Parte" para ser redirecionado para a página de inscrição.
+
+*User story*
+
+  Como: candidato a uma possível vaga para trabalhar com a Beedoo
+  Quero: acessar o ambiente onde se encontra o formulário de inscrição
+  Para: que eu possa preencher meus dados e anexar um arquivo contendo meu currículo
+
+*Critérios de aceitação*
+
+  Dado que: eu preencha os campos do formulário com dados válidos
+  Quando: anexo um arquivo com meu curriculo
+  E: submeto o formulário
+  Então: concluo o envio dos dados com meu currículo com sucesso
+
+*CT-Casos de teste*
+
+*CTS01-Casos de teste de sucesso 
+
+ FN00-Funcionalidade: Site do Beedoo e Formulário de inscrição
+
+  CN001-Cenário 1: Acessa formulário de inscrição através do site do Beedoo
+    
+    Dado que: eu acesse o site 'https://beedoo.com.br/'
+    Quando: estou na 'Home' e aparece os termos de cookie
+    E: clico em 'Aceitar' para que o mesmo feche
+    E: clico em 'Envie seu currículo' dentro de 'Faça parte'
+    Então: uma nova aba é aberta para preencher os campos da inscrição
+
+    # Os termos de aceite de cookies, só aparecem na primeira vez que o site é acessado.
+    Depois de aceitá-lo, nos próximos acessos, os termos não estão mais visíveis.
+
+  CN002-Cenário 2: Preenche os campos com dados válidos e submete com sucesso
+
+    Dado que: eu esteja na tela principal que contém o formulário de inscrição
+    Quando: preencho corretamente os campos "Nome Completo", "Email", "Vaga", "Telefone" 
+    E: preencho o campo "*Por que você escolheu o Beedoo?"
+    Quando: clico em "Anexe seu curriculo", "Adicionar novos arquivos" e adiciono um arquivo com o currículo
+    E: clico em 'Enviar' para submeter o formulário
+    Então: a mensagem de sucesso "Obrigado por sua candidatura!" deve estar visível
+
+  CN003-Cenário 3: Submete formulário com todos os campos vazios
+
+    Dado que: eu esteja na tela principal que contém o formulário de inscrição
+    Quando: deixo todos os campos, obrigatórios e não obrigatórios, vazios
+    E: clico em 'Enviar' para submeter o formulário
+    Então: a borda do campo "Nome completo" ficam em vermelho
+    E: a mensagem abaixo do campo "deve ser informado" está visível 
+    E: a borda do campo e o texto "*Por que você escolheu o Beedoo?" ficam em vermelho
+    E: a mensagem "deve ser informado" abaixo do campo está visivel
+    E: o alerta "Nome completo: deve ser informado" fica visível
+
+*CTS02-Casos de teste de possíveis erros
+
+   FN01-Funcionalidade: Campo "Nome Completo"
+
+    CN001-Cenário 1: Valida se aceita o campo vazio
+
+    Dado que: eu esteja na tela principal que contém o formulário de inscrição
+    Quando: deixo o campo "Nome completo" vazio
+    E: preencho os campos "Email", "Vaga", "Telefone" com dados válidos
+    E: preencho o campo "*Por que você escolheu o Beedoo?"
+    Quando: clico em "Anexe seu curriculo", "Adicionar novos arquivos" e adiciono um arquivo com o currículo
+    E: clico em 'Enviar' para submeter o formulário
+    Então: a cor da borda do campo, o texto "*Nome Completo" ficam em vermelho 
+    E: o alerta "Nome completo: deve ser informado" deve estar visível
+    
+    CN002-Cenário 2: Valida se aceita letras e números
+
+    Dado que: eu esteja na tela principal que contém o formulário de inscrição
+    Quando: preencho o campo "Nome completo" utilizando letras e números
+    E: preencho os campos "Email", "Vaga", "Telefone" com dados válidos
+    E: preencho o campo "*Por que você escolheu o Beedoo?"
+    Quando: clico em "Anexe seu curriculo", "Adicionar novos arquivos" e adiciono um arquivo com o currículo
+    E: clico em 'Enviar' para submeter o formulário
+    Então: a mensagem de sucesso "Obrigado por sua candidatura!" está visível
+    
+    # O sistema aceitou numeros e letras no campo "Nome completo" e retornou uma mensagem de sucesso ao
+    ser submetido ao clicar em "Enviar", não apresentando nenhum alerta durante o preenchimento e não 
+    retornando uma mensagem de erro. Entendo que o comportamento padrão do sistema seria informar ao usuário
+    uma mensagem, por exemplo "Preencha o campo nome completo apenas com letras".
+
+    CN003-Cenário 3: Valida se aceita apenas números
+
+    Dado que: eu esteja na tela principal que contém o formulário de inscrição
+    Quando: preencho o campo "Nome completo" utilizando apenas números
+    E: preencho os campos "Email", "Vaga", "Telefone" com dados válidos
+    E: preencho o campo "*Por que você escolheu o Beedoo?"
+    Quando: clico em "Anexe seu curriculo", "Adicionar novos arquivos" e adiciono um arquivo com o currículo
+    E: clico em 'Enviar' para submeter o formulário
+    Então: a mensagem de sucesso "Obrigado por sua candidatura!" está visível 
+
+    # O sistema aceitou apenas numeros no campo "Nome completo" e retornou uma mensagem de sucesso ao
+    ser submetido ao clicar em "Enviar", não apresentando nenhum alerta durante o preenchimento e não 
+    retornando uma mensagem de erro. Entendo que o comportamento padrão do sistema seria informar ao usuário
+    uma mensagem por exemplo "Preencha o campo nome completo apenas com letras".
+
+    CN004-Cenário 4: Valida limite de caracteres
+
+     Dado que: eu esteja na tela principal que contém o formulário de inscrição
+     Quando: preencho o campo "Nome completo" com letras aleatórias até o final do campo
+     Então: aparece no canto superior direito do campo uma contagem mostrando quantos caracteres restam 
+
+   FN02-Funcionalidade: Campo "Email"
+
+    CN001-Cenário 1: Valida email com email inválido
+
+    Dado que: eu esteja na tela principal que contém o formulário de inscrição
+    Quando: começo o preenchimento do campo "Email" sem o "@"
+    E: o texto "Email" fica em vermelho e apresenta uma mensagem "Formato de email inválido"
+    E: mesmo assim o usuário preenche os campos "Nome completo,"Email", "Vaga", "Telefone" com dados válidos
+    Quando: clico em "Anexe seu curriculo", "Adicionar novos arquivos" e adiciono um arquivo com o currículo
+    E: preencho o campo "*Por que você escolheu o Beedoo?"
+    E: clico em 'Enviar' para submeter o formulário
+    Então: o alerta "Email: Formato de email inválido" deve estar visível
+
+    CN002-Cenário 2: Valida email com o campo vazio
+
+    Dado que: eu esteja na tela principal que contém o formulário de inscrição
+    Quando: deixo o campo "Email" vazio
+    E: preencho os campos "Nome completo", "Vaga", "Telefone" com dados válidos
+    Quando: clico em "Anexe seu curriculo", "Adicionar novos arquivos" e adiciono um arquivo com o currículo
+    E: preencho o campo "*Por que você escolheu o Beedoo?"  
+    E: clico em 'Enviar' para submeter o formulário
+    Então: a mensagem de sucesso "Obrigado por sua candidatura!" está visível 
+
+    # O sistema aceita o formulário ser submetido com o campo "Email" vazio pois não se trata de um campo
+    obrigatório. Entendo que deveria ser obrigatório pois, num cenario onde todos os campos são preeenchidos
+    corretamente e o formulário submetido, um email de confirmação é enviado para o usuário, o que não pode
+    ocorrer no cenário onde o email não é preenchido.
+
+   FN03-Funcionalidade: Campo "Vaga"
+
+    CN001-Cenário 1: Valida se aceita o campo vazio
+
+    Dado que: eu esteja na tela principal que contém o formulário de inscrição
+    Quando: deixo o campo "Vaga" vazio
+    E: preencho os campos "Nome completo", "Email", "Telefone" com dados válidos
+    E: preencho o campo "*Por que você escolheu o Beedoo?"
+    Quando: clico em "Anexe seu curriculo", "Adicionar novos arquivos" e adiciono um arquivo com o currículo
+    E: clico em 'Enviar' para submeter o formulário
+    Então: a mensagem de sucesso "Obrigado por sua candidatura!" está visível 
+
+    # O sistema aceita o formulário ser submetido com o campo "Vaga" vazio pois não se trata de um campo
+    obrigatório. 
+    
+    CN002-Cenário 2: Valida se o campo aceita letras e números
+
+    Dado que: eu esteja na tela principal que contém o formulário de inscrição
+    Quando: preencho o campo "Vaga" utilizando letras e números
+    E: preencho os campos "Nome completo", "Email", "Telefone" com dados válidos
+    E: preencho o campo "*Por que você escolheu o Beedoo?"
+    Quando: clico em "Anexe seu curriculo", "Adicionar novos arquivos" e adiciono um arquivo com o currículo
+    E: clico em 'Enviar' para submeter o formulário
+    Então: a mensagem de sucesso "Obrigado por sua candidatura!" está visível
+    
+    CN003-Cenário 3: Valida se o campo aceita apenas números
+
+    Dado que: eu esteja na tela principal que contém o formulário de inscrição
+    Quando: preencho o campo "Vaga" utilizando apenas números
+    E: preencho os campos "Nome completo", "Email", "Telefone" com dados válidos
+    E: preencho o campo "*Por que você escolheu o Beedoo?"
+    Quando: clico em "Anexe seu curriculo", "Adicionar novos arquivos" e adiciono um arquivo com o currículo
+    E: clico em 'Enviar' para submeter o formulário
+    Então: a mensagem de sucesso "Obrigado por sua candidatura!" está visível
+
+    CN004-Cenário 4: Valida limite de caracteres do campo
+
+    Dado que: eu esteja na tela principal que contém o formulário de inscrição
+    Quando: preencho o campo "Vaga" com letras aleatórias até o final do campo
+    Então: aparece no canto superior direito do campo uma contagem mostrando quantos caracteres restam 
+
+   FN04-Funcionalidade: Campo "Telefone"
+
+    CN001-Cenário 1: Valida se aceita letras
+
+    Dado que: eu esteja na tela principal que contém o formulário de inscrição
+    Quando: tento preencher o campo "Telefone" com letras
+    E: o sistema mostra em vermelho a borda do campo , o texto "Telefone" e a mensagem "Telefone inválido"
+    E: mesmo assim o usuário preenche os campos "Nome completo", "Email", "Vaga" com dados válidos
+    E: preencho o campo "*Por que você escolheu o Beedoo?"
+    Quando: clico em "Anexe seu curriculo", "Adicionar novos arquivos" e adiciono um arquivo com o currículo
+    E: clico em 'Enviar' para submeter o formulário
+    Então: o alerta "Telefone: Telefone inválido" deve estar visível
+
+    # O campo "Telefone" não é obrigatório, porém ao iniciar seu preenchimento, ele se torna obrigatório
+    impedindo assim do formulário ser submetido.
+
+    CN002-Cenário 2: Valida se aceita telefone incompleto ou com formatação errada
+
+    Dado que: eu esteja na tela principal que contém o formulário de inscrição
+    Quando: preencho o campo "Telefone" parcialmente ou com a formatação errada
+    E: o sistema mostra em vermelho a borda do campo , o texto "Telefone" e a mensagem "Telefone inválido"
+    E: mesmo assim o usuário preenche os campos "Nome completo", "Email", "Vaga" com dados válidos
+    E: preencho o campo "*Por que você escolheu o Beedoo?"
+    Quando: clico em "Anexe seu curriculo", "Adicionar novos arquivos" e adiciono um arquivo com o currículo
+    E: clico em 'Enviar' para submeter o formulário
+    Então: o alerta "Telefone: Telefone inválido" deve estar visível
+
+   FN05-Funcionalidade: Campo "Anexe seu currículo"
+
+    CN001-Cenário 1: Valida clique 
+
+    Dado que: eu esteja na tela principal que contém o formulário de inscrição
+    Quando: eu clico em "Anexe seu curriculo" 
+    Então: o botão "+ Adicionar novos arquivos" fica visível
+
+    CN002-Cenário 2: Anexa arquivo com formato válido
+
+    Dado que: eu esteja na tela principal que contém o formulário de inscrição
+    Quando: eu clico em "Anexe seu curriculo" 
+    E: clico em "+ Adicionar novos arquivos"
+    E: é aberto o explorador de arquivos do sistema operacional 
+    Quando: seleciono um arquivo com formato válido
+    Então: o arquivo selecionado fica visível 
+
+    # O arquivo utilizado no teste está disponível em './qa/manualTests/testDataManagement/FormatoVálidoCurriculo.docx'
+
+    CN003-Cenário 3: Anexa arquivo com formato inválido
+
+    Dado que: eu esteja na tela principal que contém o formulário de inscrição
+    Quando: eu clico em "Anexe seu curriculo" 
+    E: clico em "+ Adicionar novos arquivos"
+    E: é aberto o explorador de arquivos do sistema operacional 
+    Quando: seleciono um arquivo com formato inválido
+    Então: o arquivo selecionado fica visível 
+
+    # O arquivo utilizado no teste está disponível em './qa/manualTests/testDataManagement /FormatoinválidoCurriculo.docx'
+    
+    CN004-Cenário 4: Anexa arquivo com formato inválido e submete o formulario com dados válidos
+
+    Dado que: eu esteja na tela principal que contém o formulário de inscrição
+    Quando: eu clico em "Anexe seu curriculo" 
+    E: clico em "+ Adicionar novos arquivos"
+    E: é aberto o explorador de arquivos do sistema operacional 
+    Quando: seleciono um arquivo com formato inválido
+    E: o arquivo selecionado fica visível 
+    E: preencho os campos "Nome completo", "Email", "Vaga", "Telefone" com dados válidos
+    E: preencho o campo "*Por que você escolheu o Beedoo?"
+    Quando: clico em 'Enviar' para submeter o formulário
+    Então: a mensagem de sucesso "Obrigado por sua candidatura!" está visível
+
+    # O sistema aceita ser submetido com um arquivo anexado de formato inválido. Entendo que o comportamento
+    padrão do sistema, nesse caso, seria recusar o envio de arquivos de formato inválidos emitindo uma
+    mensagem de alerta para o usuário destacando os tipod de arquivos válidos
+    # O arquivo utilizado no teste está disponível em './qa/TestesManuais/MassaDeTestes/FormatoinválidoCurriculo.docx'
+    
+    CN005-Cenário 5: Remove arquivo válido anexado
+
+    Dado que: eu esteja na tela principal que contém o formulário de inscrição
+    Quando: eu passo o mouse sobre o arquivo anexado
+    E: o botão "x" fica visível
+    E: e ao colocar o mouse sobre o "x" o texto "Delete attachment" fica visível
+    Quando: eu clico no botão "x"
+    Então: o arquivo é removido e não está visível 
+
+   FN06-Funcionalidade: Campo "*Por que você escolheu o Beedoo?"
+
+    CN001-Cenário 1: Valida limite de caracteres
+
+    Dado que: eu esteja na tela principal que contém o formulário de inscrição
+    Quando: preencho o campo "*Por que você escolheu o Beedoo?" com letras aleatórias até o final do campo
+    Então: aparece no canto superior direito do campo uma contagem mostrando quantos caracteres restam 
+
+    # O teste "falhou" pois, ao digitar letras aleatórias com a intenção de aparecer algum alerta 
+    ou mensagem de erro informando um limite de caracteres, o sistema aceitou a digitação de inúmeros 
+    caracteres não sendo possivel assim chegar ao final do campo. Aparentemente o campo não tem nenhum
+    controle sobre a quantidade de caracteres que é possivel inserir.
+
+    CN002-Cenário 2: Valida Campo "*Por que você escolheu o Beedoo?" vazio
+
+    Dado que: eu esteja na tela principal que contém o formulário de inscrição
+    Quando: preencho os campos "Nome completo", "Email", "Vaga", "Telefone" com dados válidos
+    E: deixo o campo "*Por que você escolheu o Beedoo?" vazio
+    Quando: clico em "Anexe seu curriculo", "Adicionar novos arquivos" e adiciono um arquivo com o currículo
+    E: clico em 'Enviar' para submeter o formulário
+    Então: a borda do campo e o texto "*Por que você escolheu o Beedoo?" ficam em vermelho
+    E: a mensagem "deve ser informado" abaixo do campo está visivel
+    E: o alerta "Por que você escolheu o Beedoo?: deve ser informado" fica visível
+
+    # O campo "*Por que você escolheu o Beedoo?" é um campo obrigatório
+
+   FN07-Funcionalidade: Botão "Enviar"   
+
+    CN001-Cenário 1: Valida clique no botão "Enviar" com campo obrigatório vazio
+
+    Dado que: eu esteja na tela principal que contém o formulário de inscrição
+    Quando: preencho todos os campos e anexo um arquivo com o curriculo
+    E: deixo o campo obrigatório "*Por que você escolheu o Beedoo?" vazio
+    E: clico em 'Enviar' para submeter o formulário
+    Então: o botão "Enviar" fica opaco e o formulário não é enviado
+    E: o alerta "Por que você escolheu o Beedoo?: deve ser informado" fica visível
+    E: ao clicar fora do botão "Enviar" na area branca, o botão "Enviar" volta a ficar da cor normal
+
+    CN002-Cenário 2: Valida multiplos cliques no botão "Enviar" com campo obrigatório vazio
+
+    Dado que: eu esteja na tela principal que contém o formulário de inscrição
+    Quando: preencho todos os campos e anexo um arquivo com o curriculo
+    E: deixo o campo obrigatório "*Por que você escolheu o Beedoo?" vazio
+    E: clico em 5 vezes 'Enviar' para submeter o formulário
+    Então: o botão "Enviar" permanece opaco depois do primeiro clique e o formulário não é enviado
+    E: o alerta "Por que você escolheu o Beedoo?: deve ser informado" aparece a cada clique
+    E: ao clicar fora do botão "Enviar" na area branca, o botão "Enviar" volta a ficar da cor normal
+
+   FN08-Funcionalidade: Scroll do mouse
+
+    CN001-Cenário 1: Valida visualização de todos os dados ao utilizar Scroll do mouse 
+
+    Dado que: eu esteja na tela principal que contém o formulário de inscrição
+    Quando: eu uso a rolagem do formulário com o scroll do mouse
+    Então: todas as informações do formulário estão sendo exibidas na tela
+
+
+
+
+
+
+
+    
+
+    
+
+
+
+
+ 
+    
+
+
+
+ 
+
+
+
+
+
+
+  
+
+  
+
+
+
+
