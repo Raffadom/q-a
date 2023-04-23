@@ -28,7 +28,7 @@ concorrer a uma possível vaga de trabalho.'https://app.pipefy.com/public/form/N
  - No terminal digita o comando: npm cypress open
  - Com o cypress aberto: clica em "E2E Testing", "continue" , seleciona o Browser "Electron" e clica em:
  "Start E2E Testing in Electron", "Create new Spec" , "Okay, run the spec" para rodar um exemplo.
-![TestRunnerCypressInit](./Assets/gits/TestRunnerCypressInit.gif)
+![TestRunnerCypressInit](./Assets/gifts/TestRunnerCypressInit.gif)
 
 # ⚙️ Estrutura dos testes
 
@@ -84,7 +84,7 @@ concorrer a uma possível vaga de trabalho.'https://app.pipefy.com/public/form/N
  - Digita url da api 'https://randomuser.me/api/' e clica em 'Send';
  - Na aba 'Body', copia seu conteúdo;
  - Cria o arquivo 'randomUserApiResponse.json' e cola o conteúdo.
- ![Postman](./Assets/gits/PostmanUse.gif)
+ ![Postman](./Assets/gifts/PostmanUse.gif)
 
  # ⚙️ Execução dos Testes automatizados
 
@@ -97,6 +97,7 @@ concorrer a uma possível vaga de trabalho.'https://app.pipefy.com/public/form/N
   - Seleciona "E2E Testing", seleciona "Electron", clica em "Start E2E Testing in Electron"
     - Pode executar os testes de maneira individual ou clica em "E2E specs" "Run 3 specs" pra executar todos ao mesmo tempo.
 	- Para isso utilizamos o "experimentalRunAllSpecs: true" em: 'cypress.config.js' 
+  ![RunAllSpecs](./Assets/gifts/RunAllSpecsTestRunnerCypress.gif)
 
  #### Para executar todos os testes em 'headless':
   - No terminal digita o comando: npm run headless
