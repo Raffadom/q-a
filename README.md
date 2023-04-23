@@ -10,7 +10,7 @@ concorrer a uma possível vaga de trabalho.'https://app.pipefy.com/public/form/N
 
 # Pré condições 
 
-* Clona o projeto do no Github em 'http://github.com/beedootestes/qa':
+* Clona o projeto do Github em 'http://github.com/beedootestes/qa':
  - No terminal digita o comando: git clone git@github.com:beedootestes/qa.git
 * Cria um projeto Node:
  - No terminal digita o comando: npm init --yes 
